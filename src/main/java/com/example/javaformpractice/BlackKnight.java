@@ -14,6 +14,10 @@ public class BlackKnight {
 
     public static BlackKnight[] allKnights  = new BlackKnight[DEFAULT_KNIGHT_LIST_SIZE];
 
+    public String getName() {
+        return name;
+    }
+
     public void cutOffArm(){
         arms--;
     }
@@ -64,9 +68,9 @@ public class BlackKnight {
     }
 
     public static boolean createKnight(String name){
-        if(allKnights.length == DEFAULT_KNIGHT_LIST_SIZE){
-            return false;
-        }
+//        if(allKnights.length == DEFAULT_KNIGHT_LIST_SIZE){
+//            return false;
+//        }
 
         BlackKnight knight = new BlackKnight(name);
         for(int i = 0;i < allKnights.length; i++){
@@ -78,6 +82,16 @@ public class BlackKnight {
         }
 
         return false;
+    }
+
+    public static BlackKnight getLatestKnight(){
+        for(int i = 0; i < allKnights.length; i++){
+            if(allKnights[i] == null){
+                return allKnights[i - 1];
+            }
+        }
+
+        return allKnights[DEFAULT_KNIGHT_LIST_SIZE - 1];
     }
 
 }
