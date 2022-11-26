@@ -18,6 +18,10 @@ public class BlackKnight {
         return name;
     }
 
+    public boolean isAlive(){
+        return alive;
+    }
+
     public void cutOffArm(){
         arms--;
     }
@@ -33,11 +37,11 @@ public class BlackKnight {
     @Override
     public String toString(){
         return "BlackKnight { " + "\n"+
-                "name: "+name+ "\n"+
-                "arms: "+ arms+ "\n"+
-                "legs: "+ legs+ "\n"+
-                "head: "+ head+ "\n"+
-                "alive: "+ alive+ "\n"+
+                    "name: "+name+ "\n"+
+                    "arms: "+ arms+ "\n"+
+                    "legs: "+ legs+ "\n"+
+                    "head: "+ head+ "\n"+
+                    "alive: "+ alive+ "\n"+
                 " }";
     }
 
@@ -49,12 +53,10 @@ public class BlackKnight {
                 cutOffLeg();
             }else {
                 cutOffHead();
-                alive = !alive;
+                alive = false;
                 numOfAliveKnights--;
                 numOfDeadKnights++;
             }
-        } else {
-            System.out.println("Stop! He's already dead");
         }
     }
 
@@ -68,11 +70,18 @@ public class BlackKnight {
     }
 
     public static boolean createKnight(String name){
-//        if(allKnights.length == DEFAULT_KNIGHT_LIST_SIZE){
-//            return false;
-//        }
-
         BlackKnight knight = new BlackKnight(name);
+
+        return insertKnightIntoArray(knight);
+    }
+
+    public static boolean createKnight(){
+        BlackKnight knight = new BlackKnight();
+
+        return insertKnightIntoArray(knight);
+    }
+
+    public static boolean insertKnightIntoArray(BlackKnight knight){
         for(int i = 0;i < allKnights.length; i++){
             if(allKnights[i] == null){
                 allKnights[i] = knight;

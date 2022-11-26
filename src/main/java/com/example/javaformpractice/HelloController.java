@@ -15,12 +15,23 @@ public class HelloController {
     private TextArea myTextArea;
 
     @FXML
+    private ToggleButton myToggleButton;
+
+    @FXML
+    private ToggleGroup beingType;
+
+    @FXML
     void onButtonClick(ActionEvent event) {
-        inputText.setText(input.getText());
-        // create alert using java fx
+        RadioButton selectedRadioButton = (RadioButton) beingType.getSelectedToggle();
+        String type = selectedRadioButton.getText();
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Value of text has been changed!");
+        alert.setContentText(type);
         alert.show();
+    }
+
+    public void toggleType(ActionEvent event) {
+        System.out.println(myToggleButton.getText());
     }
 }
 
@@ -34,4 +45,13 @@ public class HelloController {
  * name: John Doe
  * gender: male
  * age: 39
+ */
+
+
+
+/*
+         Being
+      _____|_____
+     |           |
+    Alien      Human
  */
